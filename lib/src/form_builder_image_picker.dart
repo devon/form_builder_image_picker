@@ -60,6 +60,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
   final bool preventPop;
 
   final Alignment horizontalAlignment;
+  final double radius;
 
   /// fit for each image
   final BoxFit fit;
@@ -99,6 +100,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
     this.bottomSheetPadding = EdgeInsets.zero,
     this.placeholderImage,
     this.horizontalAlignment = Alignment.centerLeft,
+    this.radius = 0.0,
   })
       : assert(maxImages == null || maxImages >= 0),
         super(
@@ -157,25 +159,28 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                         alignment: Alignment.topRight,
                         children: <Widget>[
                           Container(
-                            width: previewWidth,
-                            height: previewHeight,
-                            margin: previewMargin,
-                            child: displayItem is Widget
-                                ? displayItem
-                                : displayItem is ImageProvider
-                                ? Image(image: displayItem, fit: fit)
-                                : displayItem is Uint8List
-                                ? Image.memory(displayItem, fit: fit)
-                                : displayItem is String
-                                ? Image.network(
-                              displayItem,
-                              fit: fit,
-                            )
-                                : XFileImage(
-                              file: displayItem,
-                              fit: fit,
-                              loadingWidget: loadingWidget,
-                            ),
+                              width: previewWidth,
+                              height: previewHeight,
+                              margin: previewMargin,
+                              child: displayItem is Widget
+                                  ? displayItem
+                                  : displayItem is ImageProvider
+                                  ? Image(image: displayItem, fit: fit)
+                                  : displayItem is Uint8List
+                                  ? Image.memory(displayItem, fit: fit)
+                                  : displayItem is String
+                                  ? Image.network(
+                                displayItem,
+                                fit: fit,
+                              )
+                                  : ClipRRect(
+                                borderRadius: BorderRadius.circular(radius),
+                                child: XFileImage(
+                                  file: displayItem,
+                                  fit: fit,
+                                  loadingWidget: loadingWidget,
+                                ),
+                              )
                           ),
                           if (state.enabled)
                             InkWell(
@@ -214,18 +219,23 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                           image: placeholderImage,
                         )
                             : Container(
-                            width: previewWidth,
-                            height: previewHeight,
-                            child: Icon(
-                              Icons.camera_enhance,
-                              color: state.enabled
-                                  ? iconColor ?? primaryColor
-                                  : disabledColor,
-                            ),
+                          width: previewWidth,
+                          height: previewHeight,
+
+                          child: Icon(
+                            Icons.camera_enhance,
+                            color: state.enabled
+                                ? iconColor ?? primaryColor
+                                : disabledColor,
+                          ),
+                          decoration: BoxDecoration(
                             color: (state.enabled
                                 ? iconColor ?? primaryColor
                                 : disabledColor)
-                                .withAlpha(50)),
+                                .withAlpha(50),
+                            borderRadius: BorderRadius.circular(radius),
+                          ),
+                        ),
                         onTap: () async {
                           final remainingImages = maxImages == null
                               ? null
