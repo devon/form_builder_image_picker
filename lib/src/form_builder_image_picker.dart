@@ -221,7 +221,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                             : Container(
                           width: previewWidth,
                           height: previewHeight,
-
+                          margin: value.length > 0 ? previewMargin : null,
                           child: Icon(
                             Icons.camera_enhance,
                             color: state.enabled
