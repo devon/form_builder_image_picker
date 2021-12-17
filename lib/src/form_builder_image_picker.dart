@@ -213,11 +213,13 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                       return GestureDetector(
                         key: UniqueKey(),
                         child: placeholderImage != null
-                            ? Image(
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(radius),
+                                child: Image(
                           width: previewWidth,
                           height: previewHeight,
                           image: placeholderImage,
-                        )
+                        ),)
                             : Container(
                           width: previewWidth,
                           height: previewHeight,
