@@ -219,6 +219,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                           width: previewWidth,
                           height: previewHeight,
                           image: placeholderImage,
+                          fit: fit,
                         ),)
                             : Container(
                           width: previewWidth,
