@@ -16,6 +16,8 @@ class ImageSourceBottomSheet extends StatefulWidget {
 
   final int? remainingImages;
 
+  final Color color;
+
   /// Use preferredCameraDevice to specify the camera to use when the source is
   /// `ImageSource.camera`. The preferredCameraDevice is ignored when source is
   /// `ImageSource.gallery`. It is also ignored if the chosen camera is not
@@ -46,6 +48,7 @@ class ImageSourceBottomSheet extends StatefulWidget {
     this.cameraLabel,
     this.galleryLabel,
     this.bottomSheetPadding,
+    this.color = Colors.white,
   }) : super(key: key);
 
   @override
@@ -93,6 +96,7 @@ class _ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
   Widget build(BuildContext context) {
     Widget res = Container(
       padding: widget.bottomSheetPadding,
+      color: widget.color,
       child: Wrap(
         children: <Widget>[
           ListTile(
