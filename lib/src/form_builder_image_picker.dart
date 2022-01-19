@@ -260,8 +260,8 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                                 galleryLabel: galleryLabel,
                                 onImageSelected: (image) {
                                   state.requestFocus();
-                                  field.didChange([...value, ...image]);
                                   Navigator.pop(state.context);
+                                  field.didChange([...value, ...image]);
                                 },
                               );
                             },
