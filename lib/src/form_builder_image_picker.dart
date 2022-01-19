@@ -162,20 +162,20 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                               width: previewWidth,
                               height: previewHeight,
                               margin: previewMargin,
-                              child: displayItem is Widget
-                                  ? displayItem
-                                  : displayItem is ImageProvider
-                                  ? Image(image: displayItem, fit: fit)
-                                  : displayItem is Uint8List
-                                  ? Image.memory(displayItem, fit: fit)
-                                  : displayItem is String
-                                  ? Image.network(
-                                displayItem,
-                                fit: fit,
-                              )
-                                  : ClipRRect(
+                              child: ClipRRect(
                                 borderRadius: BorderRadius.circular(radius),
-                                child: XFileImage(
+                                child: displayItem is Widget
+                                    ? displayItem
+                                    : displayItem is ImageProvider
+                                    ? Image(image: displayItem, fit: fit)
+                                    : displayItem is Uint8List
+                                    ? Image.memory(displayItem, fit: fit)
+                                    : displayItem is String
+                                    ? Image.network(
+                                  displayItem,
+                                  fit: fit,
+                                )
+                                    : XFileImage(
                                   file: displayItem,
                                   fit: fit,
                                   loadingWidget: loadingWidget,
@@ -214,13 +214,13 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                         key: UniqueKey(),
                         child: placeholderImage != null
                             ? ClipRRect(
-                                borderRadius: BorderRadius.circular(radius),
-                                child: Image(
-                          width: previewWidth,
-                          height: previewHeight,
-                          image: placeholderImage,
-                          fit: fit,
-                        ),)
+                          borderRadius: BorderRadius.circular(radius),
+                          child: Image(
+                            width: previewWidth,
+                            height: previewHeight,
+                            image: placeholderImage,
+                            fit: fit,
+                          ),)
                             : Container(
                           width: previewWidth,
                           height: previewHeight,
