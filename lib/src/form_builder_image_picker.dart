@@ -52,6 +52,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
 
   final void Function(Image)? onImage;
   final int? maxImages;
+  final Widget? moreImageSource;
   final Widget cameraIcon;
   final Widget galleryIcon;
   final Widget cameraLabel;
@@ -93,6 +94,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
     this.preferredCameraDevice = CameraDevice.rear,
     this.onImage,
     this.maxImages,
+    this.moreImageSource,
     this.cameraIcon = const Icon(Icons.camera_enhance),
     this.galleryIcon = const Icon(Icons.image),
     this.cameraLabel = const Text('Camera'),
@@ -254,6 +256,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                                 imageQuality: imageQuality,
                                 preferredCameraDevice: preferredCameraDevice,
                                 bottomSheetPadding: bottomSheetPadding,
+                                moreImageSource: moreImageSource,
                                 cameraIcon: cameraIcon,
                                 cameraLabel: cameraLabel,
                                 galleryIcon: galleryIcon,

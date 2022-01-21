@@ -27,6 +27,7 @@ class ImageSourceBottomSheet extends StatefulWidget {
   /// Callback when an image is selected.
   final void Function(Iterable<XFile> files) onImageSelected;
 
+  final Widget? moreImageSource;
   final Widget? cameraIcon;
   final Widget? galleryIcon;
   final Widget? cameraLabel;
@@ -43,6 +44,7 @@ class ImageSourceBottomSheet extends StatefulWidget {
     this.imageQuality,
     this.preferredCameraDevice = CameraDevice.rear,
     required this.onImageSelected,
+    this.moreImageSource,
     this.cameraIcon,
     this.galleryIcon,
     this.cameraLabel,
@@ -99,6 +101,8 @@ class _ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
       color: widget.color,
       child: Wrap(
         children: <Widget>[
+          if (widget.moreImageSource != null)
+            widget.moreImageSource!,
           ListTile(
             leading: widget.cameraIcon,
             title: widget.cameraLabel,
