@@ -58,6 +58,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
   final Widget cameraLabel;
   final Widget galleryLabel;
   final EdgeInsets bottomSheetPadding;
+  final double? bottomSheetRadius;
   final bool preventPop;
 
   final Alignment horizontalAlignment;
@@ -100,6 +101,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
     this.cameraLabel = const Text('Camera'),
     this.galleryLabel = const Text('Gallery'),
     this.bottomSheetPadding = EdgeInsets.zero,
+    this.bottomSheetRadius,
     this.placeholderImage,
     this.horizontalAlignment = Alignment.centerLeft,
     this.radius = 0.0,
@@ -256,6 +258,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                                 imageQuality: imageQuality,
                                 preferredCameraDevice: preferredCameraDevice,
                                 bottomSheetPadding: bottomSheetPadding,
+                                bottomSheetRadius: bottomSheetRadius,
                                 moreImageSource: moreImageSource,
                                 cameraIcon: cameraIcon,
                                 cameraLabel: cameraLabel,

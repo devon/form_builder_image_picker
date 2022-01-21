@@ -33,6 +33,7 @@ class ImageSourceBottomSheet extends StatefulWidget {
   final Widget? cameraLabel;
   final Widget? galleryLabel;
   final EdgeInsets? bottomSheetPadding;
+  final double? bottomSheetRadius;
   final bool preventPop;
 
   const ImageSourceBottomSheet({
@@ -50,6 +51,7 @@ class ImageSourceBottomSheet extends StatefulWidget {
     this.cameraLabel,
     this.galleryLabel,
     this.bottomSheetPadding,
+    this.bottomSheetRadius,
     this.color = Colors.white,
   }) : super(key: key);
 
@@ -98,7 +100,13 @@ class _ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
   Widget build(BuildContext context) {
     Widget res = Container(
       padding: widget.bottomSheetPadding,
-      color: widget.color,
+      decoration:  BoxDecoration(
+        color: widget.color,
+        borderRadius: widget.bottomSheetRadius != null ? BorderRadius.only(
+          topRight: Radius.circular(widget.bottomSheetRadius!),
+          topLeft: Radius.circular(widget.bottomSheetRadius!),
+        ) : null,
+      ),
       child: Wrap(
         children: <Widget>[
           if (widget.moreImageSource != null)
