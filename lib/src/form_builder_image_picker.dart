@@ -214,35 +214,38 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                         ],
                       );
                     } else {
-                      return GestureDetector(
-                        key: UniqueKey(),
-                        child: placeholderImage != null
-                            ? ClipRRect(
-                          borderRadius: BorderRadius.circular(radius),
-                          child: Image(
+                      return Semantics(
+                        label: 'Image Picker',
+                        child: GestureDetector(
+
+                          key: UniqueKey(),
+                          child: placeholderImage != null
+                              ? ClipRRect(
+                            borderRadius: BorderRadius.circular(radius),
+                            child: Image(
+                              width: previewWidth,
+                              height: previewHeight,
+                              image: placeholderImage,
+                              fit: fit,
+                            ),)
+                              : Container(
                             width: previewWidth,
                             height: previewHeight,
-                            image: placeholderImage,
-                            fit: fit,
-                          ),)
-                            : Container(
-                          width: previewWidth,
-                          height: previewHeight,
-                          margin: value.length > 0 ? previewMargin : null,
-                          child: Icon(
-                            Icons.camera_enhance,
-                            color: state.enabled
-                                ? iconColor ?? primaryColor
-                                : disabledColor,
-                          ),
-                          decoration: BoxDecoration(
-                            color: (state.enabled
-                                ? iconColor ?? primaryColor
-                                : disabledColor)
-                                .withAlpha(50),
-                            borderRadius: BorderRadius.circular(radius),
-                          ),
-                        ),
+                            margin: value.length > 0 ? previewMargin : null,
+                            child: Icon(
+                              Icons.camera_enhance,
+                              color: state.enabled
+                                  ? iconColor ?? primaryColor
+                                  : disabledColor,
+                            ),
+                            decoration: BoxDecoration(
+                              color: (state.enabled
+                                  ? iconColor ?? primaryColor
+                                  : disabledColor)
+                                  .withAlpha(50),
+                              borderRadius: BorderRadius.circular(radius),
+                            ),
+                          ),),
                         onTap: () async {
                           final remainingImages = maxImages == null
                               ? null
