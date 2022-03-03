@@ -217,7 +217,6 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                       return Semantics(
                         label: 'Image Picker',
                         child: GestureDetector(
-
                           key: UniqueKey(),
                           child: placeholderImage != null
                               ? ClipRRect(
@@ -245,53 +244,54 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                                   .withAlpha(50),
                               borderRadius: BorderRadius.circular(radius),
                             ),
-                          ),),
-                        onTap: () async {
-                          final remainingImages = maxImages == null
-                              ? null
-                              : maxImages - value.length;
-                          await showModalBottomSheet<void>(
-                            context: state.context,
-                            builder: (_) {
-                              return ImageSourceBottomSheet(
-                                maxHeight: maxHeight,
-                                maxWidth: maxWidth,
-                                preventPop: preventPop,
-                                remainingImages: remainingImages,
-                                imageQuality: imageQuality,
-                                preferredCameraDevice: preferredCameraDevice,
-                                bottomSheetPadding: bottomSheetPadding,
-                                bottomSheetRadius: bottomSheetRadius,
-                                moreImageSource: moreImageSource,
-                                cameraIcon: cameraIcon,
-                                cameraLabel: cameraLabel,
-                                galleryIcon: galleryIcon,
-                                galleryLabel: galleryLabel,
-                                onImageSelected: (image) {
-                                  state.requestFocus();
-                                  Navigator.pop(state.context);
-                                  field.didChange([...value, ...image]);
-                                },
-                              );
-                            },
-                          );
-                          // if (remainingImages == 1) {
-                          // } else {
-                          //   final imagePicker = ImagePicker();
-                          //   final picked = await imagePicker.pickMultiImage(
-                          //     maxHeight: maxHeight,
-                          //     maxWidth: maxWidth,
-                          //     imageQuality: imageQuality,
-                          //   );
-                          //   if (picked != null) {
-                          //     state.requestFocus();
-                          //     final actualPicked = remainingImages == null
-                          //         ? picked
-                          //         : picked.take(remainingImages);
-                          //     field.didChange([...value, ...actualPicked]);
-                          //   }
-                          // }
-                        },
+                          ),
+                          onTap: () async {
+                            final remainingImages = maxImages == null
+                                ? null
+                                : maxImages - value.length;
+                            await showModalBottomSheet<void>(
+                              context: state.context,
+                              builder: (_) {
+                                return ImageSourceBottomSheet(
+                                  maxHeight: maxHeight,
+                                  maxWidth: maxWidth,
+                                  preventPop: preventPop,
+                                  remainingImages: remainingImages,
+                                  imageQuality: imageQuality,
+                                  preferredCameraDevice: preferredCameraDevice,
+                                  bottomSheetPadding: bottomSheetPadding,
+                                  bottomSheetRadius: bottomSheetRadius,
+                                  moreImageSource: moreImageSource,
+                                  cameraIcon: cameraIcon,
+                                  cameraLabel: cameraLabel,
+                                  galleryIcon: galleryIcon,
+                                  galleryLabel: galleryLabel,
+                                  onImageSelected: (image) {
+                                    state.requestFocus();
+                                    Navigator.pop(state.context);
+                                    field.didChange([...value, ...image]);
+                                  },
+                                );
+                              },
+                            );
+                            // if (remainingImages == 1) {
+                            // } else {
+                            //   final imagePicker = ImagePicker();
+                            //   final picked = await imagePicker.pickMultiImage(
+                            //     maxHeight: maxHeight,
+                            //     maxWidth: maxWidth,
+                            //     imageQuality: imageQuality,
+                            //   );
+                            //   if (picked != null) {
+                            //     state.requestFocus();
+                            //     final actualPicked = remainingImages == null
+                            //         ? picked
+                            //         : picked.take(remainingImages);
+                            //     field.didChange([...value, ...actualPicked]);
+                            //   }
+                            // }
+                          },
+                        ),
                       );
                     }
                   },
